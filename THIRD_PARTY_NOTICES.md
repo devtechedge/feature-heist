@@ -9,3 +9,4 @@ Feature Heist's own code is MIT (see `LICENSE`). These files are third-party art
 | `packages/rebuilds/weth9-ledger/fixtures/weth9.hex` | Public Ethereum mainnet state, `eth_getCode` of `0xC02a…6Cc2` | WETH9 source is GPL-3.0. Only the deployed bytecode is used, as an interoperability test oracle; no GPL source is included. |
 | `packages/rebuilds/npm-search-client/fixtures/npm-search.redacted.har` | Responses from the public npm registry search API | Package metadata belongs to its publishers; e-mail addresses are redacted |
 | `evidence/*/record.json.gz` | Output of [REA](https://github.com/morluto/rea) (MIT) over the targets above | Derived analysis data |
+| `packages/rebuilds/native-pan-crc/target/*` | Written for this repo | MIT, same as the rest of Feature Heist |
