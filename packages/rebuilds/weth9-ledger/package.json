@@ -1,0 +1,4 @@
+{ "name": "@heist/rebuild-weth9-ledger", "version": "0.1.0", "type": "module", "main": "dist/index.js", "types": "dist/index.d.ts",
+  "scripts": { "build": "tsc -p .", "test": "vitest run", "typecheck": "tsc -p . --noEmit" },
+  "dependencies": { "@noble/hashes": "^1.6.1" },
+  "devDependencies": { "@heist/evidence": "workspace:*", "@ethereumjs/evm": "^3.1.1", "@ethereumjs/util": "^9.1.0", "@ethereumjs/common": "^4.4.0", "@ethereumjs/statemanager": "^2.4.0" } }
