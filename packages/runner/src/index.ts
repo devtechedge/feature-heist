@@ -12,12 +12,32 @@ export interface HeistOptions {
   rea?: string;
   /** Extra arguments appended to the rea command, e.g. ["--type", "Ns.Type"]. */
   reaArgs?: string[];
+  /** Native binaries: the procedure (symbol or 0xADDRESS) to dossier. */
+  procedure?: string;
+  /** Native provider, default ghidra. */
+  provider?: string;
   log?: (m: string) => void;
 }
 
 /** Choose the REA command for a target. Directories / .asar are JS/Electron apps; others go through generic inspect. */
-export function planCommand(target: string): string[] {
+const MAGIC: [string, number[]][] = [["elf", [0x7f, 0x45, 0x4c, 0x46]], ["pe", [0x4d, 0x5a]], ["macho", [0xcf, 0xfa, 0xed, 0xfe]], ["macho", [0xca, 0xfe, 0xba, 0xbe]]];
+
+/** Sniff native executable formats by magic bytes. */
+export function nativeFormat(path: string): string | null {
+  if (!existsSync(path) || statSync(path).isDirectory()) return null;
+  const head = readFileSync(path).subarray(0, 4);
+  const hit = MAGIC.find(([, m]) => m.every((b, i) => head[i] === b));
+  return hit ? hit[0] : null;
+}
+
+export function planCommand(target: string, opts: { procedure?: string; provider?: string } = {}): string[] {
   const abs = resolve(target);
+  const fmt = nativeFormat(abs);
+  if (fmt && !/\.(dll|exe)$/i.test(abs)) {
+    if (!opts.procedure) throw new Error(`native ${fmt} target needs --procedure <symbol|0xADDRESS>`);
+    return ["function", abs, opts.procedure, "--provider", opts.provider ?? "ghidra", "--format", "json"];
+  }
+  if (fmt === "pe" && opts.procedure) return ["function", abs, opts.procedure, "--provider", opts.provider ?? "ghidra", "--format", "json"];
   const lower = abs.toLowerCase();
   if (lower.endsWith(".har")) return ["inspect-web-network-capture", abs, "har", "--format", "json"];
   if (lower.endsWith(".saz")) return ["inspect-web-network-capture", abs, "saz", "--format", "json"];
@@ -27,7 +47,7 @@ export function planCommand(target: string): string[] {
   if (abs.endsWith(".asar") || (existsSync(abs) && statSync(abs).isDirectory())) {
     return ["analyze-javascript-application", abs, "--json"];
   }
-  throw new Error(`unsupported target (supported: JS/Electron dir or .asar, .har/.saz, .hex/.evm/.bin EVM bytecode, .dll/.exe managed assemblies): ${target}`);
+  throw new Error(`unsupported target (supported: JS/Electron dir or .asar, native ELF/PE/Mach-O with --procedure, .har/.saz, .hex/.evm/.bin EVM bytecode, .dll/.exe managed assemblies): ${target}`);
 }
 
 /** Default search keywords: the feature's words plus any camelCase hints. */
@@ -72,7 +92,7 @@ ${s.call_chain.map((c: string, i: number) => `${i + 1}. \`${c}\``).join("\n") ||
 | kind | label | location |
 |---|---|---|
 ${hits}
-
+${s.native ? `\n## Native dossier: \`${s.native.procedure}\` @ ${s.native.address}\n\nCallers: ${s.native.callers.join(", ") || "none"} · ${s.native.instructions} instructions\n\n\`\`\`c\n${s.native.pseudocode}\n\`\`\`\n` : ""}
 ## Behaviour (fill in from evidence)
 - Inputs:
 - Outputs:
@@ -87,8 +107,8 @@ export async function heist(o: HeistOptions): Promise<{ manifest: StoredManifest
   const log = o.log ?? (() => {});
   const rea = o.rea ?? "rea";
   const version = reaVersion(rea);
-  const args = [...planCommand(o.target), ...(o.reaArgs ?? [])];
-  const slug = slugify(`${basename(resolve(o.target))}-${o.feature}`);
+  const args = [...planCommand(o.target, { procedure: o.procedure, provider: o.provider }), ...(o.reaArgs ?? [])];
+  const slug = slugify(`${basename(resolve(o.target))}-${o.procedure ? o.procedure + "-" : ""}${o.feature}`);
   const dir = resolve(o.outDir ?? "evidence", slug);
   const tmp = mkdtempSync(join(tmpdir(), "heist-"));
   const raw = join(tmp, "record.json");
