@@ -1,0 +1,15 @@
+{
+  "schema": "feature-heist/manifest@1",
+  "slug": "pancrc-fh-pan-native",
+  "feature": "native",
+  "target": "packages/rebuilds/native-pan-crc/target/pancrc",
+  "rea_version": "6.7.0",
+  "created_at": "2026-10-21T15:25:18.055Z",
+  "evidence_id": "ev_059bae19c8ecf5fceac50efa042a1e4433bda4dcf7e31f4449fa647b0186d1ac",
+  "record_sha256": "68ae1861062e8d17af31635808d5f634b581e0f0486a3a69ce228ae1404edb89",
+  "record_bytes": 62142,
+  "files": {
+    "record_gz": "record.json.gz",
+    "slice": "slice.json"
+  }
+}

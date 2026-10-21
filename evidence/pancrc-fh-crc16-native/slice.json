@@ -1,0 +1,106 @@
+{
+  "schema": "feature-heist/slice@1",
+  "feature": "native",
+  "keywords": [
+    "fh_crc16"
+  ],
+  "evidence_id": "ev_53aef167fa1fd427bde3cde0657f311bda3d2206403c4859bcf94e5c57468fa5",
+  "record_sha256": "0538d2fe719965170998c3baa6bc205a00c1855da38f79184611dd1f9d7c12ef",
+  "subject": {
+    "name": "pancrc",
+    "digest": {
+      "sha256": "6f506f4e366bb18cd9b654b185500b41a5b313d373126ec46f22d6ee5a2f0f61"
+    },
+    "local_path": "/workspace/feature-heist/packages/rebuilds/native-pan-crc/target/pancrc",
+    "format": "elf",
+    "architecture": "x86_64"
+  },
+  "provider": {
+    "id": "ghidra",
+    "name": "Ghidra",
+    "version": "12.1.4"
+  },
+  "operation": "analyze_function",
+  "summary": null,
+  "statistics": null,
+  "hits": [
+    {
+      "kind": "incoming_references",
+      "label": null,
+      "module_path": "pancrc",
+      "start_line": 0,
+      "end_line": 0,
+      "role_key": "raw_result.value.incoming_references[0]"
+    },
+    {
+      "kind": "outgoing_references",
+      "label": null,
+      "module_path": "pancrc",
+      "start_line": 0,
+      "end_line": 0,
+      "role_key": "raw_result.value.outgoing_references[0]"
+    },
+    {
+      "kind": "incoming_references",
+      "label": null,
+      "module_path": "pancrc",
+      "start_line": 1,
+      "end_line": 1,
+      "role_key": "raw_result.value.incoming_references[1]"
+    },
+    {
+      "kind": "outgoing_references",
+      "label": null,
+      "module_path": "pancrc",
+      "start_line": 1,
+      "end_line": 1,
+      "role_key": "raw_result.value.outgoing_references[1]"
+    },
+    {
+      "kind": "incoming_references",
+      "label": null,
+      "module_path": "pancrc",
+      "start_line": 2,
+      "end_line": 2,
+      "role_key": "raw_result.value.incoming_references[2]"
+    },
+    {
+      "kind": "outgoing_references",
+      "label": null,
+      "module_path": "pancrc",
+      "start_line": 2,
+      "end_line": 2,
+      "role_key": "raw_result.value.outgoing_references[2]"
+    },
+    {
+      "kind": "incoming_references",
+      "label": null,
+      "module_path": "pancrc",
+      "start_line": 3,
+      "end_line": 3,
+      "role_key": "raw_result.value.incoming_references[3]"
+    }
+  ],
+  "call_chain": [],
+  "native": {
+    "procedure": "fh_crc16",
+    "address": "0x101410",
+    "pseudocode": "uint fh_crc16(byte *param_1,long param_2)\n\n{\n  byte *pbVar1;\n  uint uVar2;\n  short sVar3;\n  uint uVar4;\n  int iVar5;\n  \n  if (param_2 != 0) {\n    pbVar1 = param_1 + param_2;\n    uVar4 = 0xffffffff;\n    do {\n      uVar4 = uVar4 ^ (uint)*param_1 << 8;\n      iVar5 = 8;\n      do {\n        uVar2 = uVar4 * 2;\n        sVar3 = (short)uVar4;\n        uVar4 = uVar2;\n        if (sVar3 < 0) {\n          uVar4 = uVar2 ^ 0x1021;\n        }\n        iVar5 = iVar5 + -1;\n      } while (iVar5 != 0);\n      param_1 = param_1 + 1;\n    } while (pbVar1 != param_1);\n    return uVar4;\n  }\n  return 0xffffffff;\n}",
+    "callers": [
+      "main"
+    ],
+    "callees": [],
+    "instructions": 25
+  },
+  "limitations": [
+    "The session serves operations only after Ghidra reports default auto-analysis complete; incomplete analysis does not expose partial results.",
+    "The imported Program and temporary project are ephemeral and deleted on close. Annotation operations edit session database metadata; original executable bytes are never written.",
+    "Cancelling an active Ghidra request terminates its ephemeral database and discards session annotations. The selected target remains open; the next provider query imports the original artifact again.",
+    "Default-space addresses use lowercase 0x-prefixed hexadecimal; other address spaces use <percent-encoded-space>:0x<hex>.",
+    "References cover the complete Ghidra function-body AddressSet and exact entry. Dossier incoming edges omit sources owned by that function; procedure_references also retains those internal edges.",
+    "The dossier combines Ghidra FunctionManager, Listing, ReferenceManager, BasicBlockModel, and decompiler observations; provider-specific pseudocode and assembly are not cross-provider text invariants.",
+    "Resolved reference metadata identifies computed, indirect, external, call, jump, and data edges; unresolved targetless flows remain unknown, and function classifications distinguish thunks and externals.",
+    "Synthetic Ghidra entry-point references without actionable memory sources are omitted.",
+    "The Java bridge serializes one function request per Program and lets each decompilation run until it completes or the caller cancels."
+  ]
+}
