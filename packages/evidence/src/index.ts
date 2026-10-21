@@ -153,7 +153,7 @@ export function genericHits(r: ReaEvidenceRecord, kws: string[], cap = 500): Sem
           const j = JSON.stringify(item);
           if (j.length < 4000 && (all || kws.some((k) => j.toLowerCase().includes(k)))) {
             const o = item as Record<string, unknown>;
-            const label = (o.selector ?? o.name ?? o.url ?? o.label ?? null) as string | null;
+            const label = (o.selector ?? o.url ?? o.value ?? o.name ?? o.label ?? null) as string | null;
             out.push({ kind: path.split(".").pop() ?? "item", label: label === null ? null : String(label),
               module_path: r.subject.name, start_line: i, end_line: i, role_key: `${path}[${i}]` });
             return;
