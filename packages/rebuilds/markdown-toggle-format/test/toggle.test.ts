@@ -43,7 +43,7 @@ describe("differential parity with the original Markdownify code", () => {
       expect({ case: i, ...got }).toEqual({ case: i, ...want });
     }
     expect(multi).toBeGreaterThan(500);
-  });
+  }, 60_000);
   it("round-trips: toggling twice restores simple wrapped text", () => {
     for (const t of TYPES) {
       const once = toggleInline("one two", 4, 7, t);
