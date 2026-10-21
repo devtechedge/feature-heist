@@ -4,6 +4,7 @@ import { toggleInline, type FormatType } from "@heist/rebuild-markdown-toggle-fo
 import { Weth9, encodeCall } from "@heist/rebuild-weth9-ledger";
 import { buildSearchUrl, parseText } from "@heist/rebuild-npm-search-client";
 import { toWords, toOrdinalWords, toTuple } from "@heist/rebuild-english-number-words";
+import { pan, crc16 } from "@heist/rebuild-native-pan-crc";
 
 function ToggleDemo() {
   const ref = useRef<HTMLTextAreaElement>(null);
@@ -60,6 +61,20 @@ function WordsDemo() {
     <pre data-testid="words-out">{out.join("\n")}</pre></div>);
 }
 
-export default function Demo({ kind }: { kind: "toggle" | "weth" | "npm" | "words" }) {
-  return kind === "toggle" ? <ToggleDemo /> : kind === "weth" ? <WethDemo /> : kind === "npm" ? <NpmDemo /> : <WordsDemo />;
+function NativeDemo() {
+  const [x, setX] = useState(480);
+  const [w, setW] = useState(640);
+  const [text, setText] = useState("123456789");
+  const p = pan(x, w);
+  return (<div>
+    <div className="row">x <input type="range" min={0} max={w} value={x} onChange={(e) => setX(Number(e.target.value))} data-testid="pan-x" style={{ flex: 1 }} />
+      width <input type="number" value={w} onChange={(e) => setW(Number(e.target.value))} style={{ width: 100 }} /></div>
+    <pre data-testid="pan-out">{`fh_pan(${x}, ${w}) = ${p}   ${p === 0 ? "(centre dead zone)" : p < 0 ? "left" : "right"}`}</pre>
+    <div className="row">text <input data-testid="crc-in" value={text} onChange={(e) => setText(e.target.value)} style={{ flex: 1 }} /></div>
+    <pre data-testid="crc-out">{`fh_crc16 = 0x${crc16(text).toString(16).toUpperCase().padStart(4, "0")}`}</pre>
+  </div>);
+}
+
+export default function Demo({ kind }: { kind: "toggle" | "weth" | "npm" | "words" | "native" }) {
+  return kind === "toggle" ? <ToggleDemo /> : kind === "weth" ? <WethDemo /> : kind === "npm" ? <NpmDemo /> : kind === "native" ? <NativeDemo /> : <WordsDemo />;
 }
