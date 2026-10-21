@@ -8,7 +8,9 @@
   "scripts": {
     "build": "turbo run build",
     "test": "turbo run test",
-    "typecheck": "turbo run typecheck"
+    "typecheck": "turbo run typecheck",
+    "e2e": "pnpm --filter @heist/site e2e",
+    "heist": "node packages/runner/dist/cli.js"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
