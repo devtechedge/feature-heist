@@ -1,0 +1,6 @@
+{ "name": "@heist/site", "version": "0.1.0", "private": true, "type": "module",
+  "scripts": { "dev": "next dev", "build": "next build", "e2e": "playwright test", "typecheck": "tsc --noEmit" },
+  "dependencies": { "next": "15.1.6", "react": "19.0.0", "react-dom": "19.0.0",
+    "@heist/rebuild-markdown-toggle-format": "workspace:*", "@heist/rebuild-weth9-ledger": "workspace:*",
+    "@heist/rebuild-npm-search-client": "workspace:*", "@heist/rebuild-english-number-words": "workspace:*" },
+  "devDependencies": { "@types/react": "^19.0.0", "@types/node": "^22.10.0", "@playwright/test": "1.49.1", "serve": "^14.2.4" } }
