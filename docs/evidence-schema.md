@@ -35,6 +35,7 @@ interface FeatureSlice {
   subject; provider; operation; summary; statistics;
   hits: { kind; label; module_path; start_line; end_line; role_key }[];
   call_chain: string[];   // JS only: caller modules, then defining modules
+  native?: { procedure; address; pseudocode; callers; callees; instructions } | null; // rea function dossiers
   limitations: unknown[];
 }
 ```
