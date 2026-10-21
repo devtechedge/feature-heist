@@ -1,0 +1,134 @@
+{
+  "schema": "feature-heist/slice@1",
+  "feature": "weth9 wrap unwrap token",
+  "keywords": [
+    "*"
+  ],
+  "evidence_id": "ev_7bc1daa46821a241f0a0c9ef5ffb604b58c4f056a9b0349ced5eb5e76c7b7301",
+  "record_sha256": "c7c35d54dfe0811854b65e5f143892f9b62419a1de0d5cb1e73b96a8e209a5d2",
+  "subject": {
+    "name": "weth9.hex",
+    "digest": {
+      "sha256": "a9817472fdcc178e9cb0a7b8488edee744b0b65be99ae90d515b227fd27a3e5b"
+    },
+    "local_path": "/workspace/targets/weth9/weth9.hex",
+    "format": "file",
+    "architecture": null
+  },
+  "provider": {
+    "id": "evmole-interface",
+    "name": "REA EVM interface adapter",
+    "version": "evmole@0.9.3"
+  },
+  "operation": "inspect_evm_interface",
+  "summary": null,
+  "statistics": null,
+  "hits": [
+    {
+      "kind": "entries",
+      "label": null,
+      "module_path": "weth9.hex",
+      "start_line": 0,
+      "end_line": 0,
+      "role_key": "raw_result.metadata.entries[0]"
+    },
+    {
+      "kind": "functions",
+      "label": "06fdde03",
+      "module_path": "weth9.hex",
+      "start_line": 0,
+      "end_line": 0,
+      "role_key": "raw_result.functions[0]"
+    },
+    {
+      "kind": "functions",
+      "label": "095ea7b3",
+      "module_path": "weth9.hex",
+      "start_line": 1,
+      "end_line": 1,
+      "role_key": "raw_result.functions[1]"
+    },
+    {
+      "kind": "functions",
+      "label": "18160ddd",
+      "module_path": "weth9.hex",
+      "start_line": 2,
+      "end_line": 2,
+      "role_key": "raw_result.functions[2]"
+    },
+    {
+      "kind": "functions",
+      "label": "23b872dd",
+      "module_path": "weth9.hex",
+      "start_line": 3,
+      "end_line": 3,
+      "role_key": "raw_result.functions[3]"
+    },
+    {
+      "kind": "functions",
+      "label": "2e1a7d4d",
+      "module_path": "weth9.hex",
+      "start_line": 4,
+      "end_line": 4,
+      "role_key": "raw_result.functions[4]"
+    },
+    {
+      "kind": "functions",
+      "label": "313ce567",
+      "module_path": "weth9.hex",
+      "start_line": 5,
+      "end_line": 5,
+      "role_key": "raw_result.functions[5]"
+    },
+    {
+      "kind": "functions",
+      "label": "70a08231",
+      "module_path": "weth9.hex",
+      "start_line": 6,
+      "end_line": 6,
+      "role_key": "raw_result.functions[6]"
+    },
+    {
+      "kind": "functions",
+      "label": "95d89b41",
+      "module_path": "weth9.hex",
+      "start_line": 7,
+      "end_line": 7,
+      "role_key": "raw_result.functions[7]"
+    },
+    {
+      "kind": "functions",
+      "label": "a9059cbb",
+      "module_path": "weth9.hex",
+      "start_line": 8,
+      "end_line": 8,
+      "role_key": "raw_result.functions[8]"
+    },
+    {
+      "kind": "functions",
+      "label": "d0e30db0",
+      "module_path": "weth9.hex",
+      "start_line": 9,
+      "end_line": 9,
+      "role_key": "raw_result.functions[9]"
+    },
+    {
+      "kind": "functions",
+      "label": "dd62ed3e",
+      "module_path": "weth9.hex",
+      "start_line": 10,
+      "end_line": 10,
+      "role_key": "raw_result.functions[10]"
+    }
+  ],
+  "call_chain": [],
+  "limitations": [
+    "Configured worker resource soft limits: address_space_bytes=3221225472, cpu_seconds=30, file_size_bytes=16777216. Selected from inherited tighter limits; original hard limits are retained. Effective worker limits are not independently probed.",
+    "Upstream may also report terminal metadata while recovering selectors. Its reported values are retained in raw_result, but integer precision and non-text-key coverage are unknown in the JS binding; complete original bytecode remains available.",
+    "Recovered selectors, argument strings and mutability are upstream inferences, not verified ABI signatures or names. Empty results do not prove the absence of callable dispatch.",
+    "Bytecode kind, hardfork and deployed-contract authenticity are unknown. This inspection performs no target runtime execution, chain/RPC lookup or network request.",
+    "Original carrier and decoded bytecode SHA-256 are distinct identities; SHA-256 is not the Ethereum Keccak code hash.",
+    "Terminal CBOR metadata is an independently decoded candidate, not proof of Solidity origin, source identity or deployment. Nested or unsupported values retain explicit unavailable interpretation and original byte ranges.",
+    "The owned worker has a 256 MiB JavaScript heap, 3 GiB virtual address-space limit and 30-second deadline. Virtual address space is distinct from resident memory; limits fail without partial success."
+  ]
+}
