@@ -1,7 +1,9 @@
 /** Curated metadata per rebuilt feature. Evidence numbers are read from /evidence at build time. */
 export interface FeatureMeta {
   slug: string; title: string; tagline: string; targetType: string; target: string; targetLicense: string;
-  targetUrl: string; reaCommand: string; rebuildPackage: string; oracle: string; demo: "toggle" | "weth" | "npm" | "words";
+  targetUrl: string; reaCommand: string; rebuildPackage: string; oracle: string; demo: "toggle" | "weth" | "npm" | "words" | "native";
+  /** Extra evidence slugs shown on the same page. */
+  related?: string[];
 }
 export const FEATURES: FeatureMeta[] = [
   { slug: "electron-markdownify-bold-italic-strikethrough-toggle", title: "Markdown format toggle", tagline: "Ctrl+B / Ctrl+I / Ctrl+/ from an Electron Markdown editor",
@@ -20,4 +22,9 @@ export const FEATURES: FeatureMeta[] = [
     targetType: ".NET assembly", target: "Humanizer.Core 2.14.1 (netstandard2.0)", targetLicense: "MIT",
     targetUrl: "https://github.com/Humanizr/Humanizer", reaCommand: "rea inspect-managed-members Humanizer.dll --type …EnglishNumberToWordsConverter",
     rebuildPackage: "packages/rebuilds/english-number-words", oracle: "4,830 golden rows emitted by the original library via tools/humanizer-oracle", demo: "words" },
+  { slug: "pancrc-fh-pan-native", title: "Native pan + CRC-16", tagline: "Two routines recovered from a compiled x86-64 ELF with Ghidra",
+    targetType: "Native binary (ELF)", target: "pancrc (own C target, MIT), gcc 14 -O2", targetLicense: "MIT",
+    targetUrl: "https://github.com/devtechedge/feature-heist/tree/main/packages/rebuilds/native-pan-crc/target", reaCommand: "rea function pancrc fh_pan --provider ghidra",
+    rebuildPackage: "packages/rebuilds/native-pan-crc", oracle: "The compiled ELF driven in batch mode; 20,000 pan cases incl. 32-bit overflow, 5,000 CRC strings", demo: "native",
+    related: ["pancrc-fh-crc16-native"] },
 ];

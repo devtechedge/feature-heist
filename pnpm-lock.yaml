@@ -35,6 +35,9 @@ importers:
       '@heist/rebuild-markdown-toggle-format':
         specifier: workspace:*
         version: link:../../packages/rebuilds/markdown-toggle-format
+      '@heist/rebuild-native-pan-crc':
+        specifier: workspace:*
+        version: link:../../packages/rebuilds/native-pan-crc
       '@heist/rebuild-npm-search-client':
         specifier: workspace:*
         version: link:../../packages/rebuilds/npm-search-client
