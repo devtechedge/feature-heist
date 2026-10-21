@@ -35,6 +35,12 @@ importers:
         specifier: workspace:*
         version: link:../../evidence
 
+  packages/rebuilds/npm-search-client:
+    devDependencies:
+      '@heist/evidence':
+        specifier: workspace:*
+        version: link:../../evidence
+
   packages/rebuilds/weth9-ledger:
     dependencies:
       '@noble/hashes':
