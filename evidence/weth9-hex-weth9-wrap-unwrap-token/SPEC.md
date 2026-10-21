@@ -1,6 +1,6 @@
 # Feature spec: weth9 wrap unwrap token
 
-- Target: `/workspace/targets/weth9/weth9.hex`
+- Target: `targets/weth9/weth9.hex`
 - REA 6.7.0, operation `inspect_evm_interface`, evidence `ev_7bc1daa46821a241f0a0c9ef5ffb604b58c4f056a9b0349ced5eb5e76c7b7301`
 - Record sha256: `c7c35d54dfe0811854b65e5f143892f9b62419a1de0d5cb1e73b96a8e209a5d2`
 
@@ -23,10 +23,13 @@ _none found; refine --keywords_
 | functions | d0e30db0 | `weth9.hex:9-9` |
 | functions | dd62ed3e | `weth9.hex:10-10` |
 
-## Behaviour (fill in from evidence)
-- Inputs:
-- Outputs:
-- Edge cases:
+## Behaviour (from REA evidence)
+- REA (evmole adapter) recovered 11 ABI functions with argument types and mutability, plus bzzr0 metadata.
+- Inputs: calldata, sender, value. Outputs: return data, revert flag, events, ETH out.
+- Signatures were matched by keccak to the recovered selectors (see tests).
+- Fallback (unknown selector or empty calldata) is a payable `deposit()`. Non-payable functions revert when sent ETH.
+- `totalSupply()` is the contract's ETH balance. `transferFrom` doesn't decrement an allowance of `2^256-1`.
 
 ## Unknowns
-- 
+- Gas, exact log topics and data aren't modelled; only event counts are compared.
+- Storage initialisers (name/symbol/decimals) aren't in runtime code. The test harness seeds them from mainnet storage slots 0-2, checked with `eth_getStorageAt`.

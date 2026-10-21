@@ -1,6 +1,6 @@
 # Feature spec: english number to words
 
-- Target: `packages/rebuilds/english-number-words/fixtures/Humanizer.dll`
+- Target: `Humanizer.dll`
 - REA 6.7.0, operation `inspect_managed_members`, evidence `ev_7760baf9c3ec8e17093f04931fb473e62113b283ac16d7d70382bc9ea9fc894e`
 - Record sha256: `0111a21487092478e6f840d0d9b495494fbea3ff243d9506f0cd753e002c0269`
 
@@ -51,10 +51,11 @@ _none found; refine --keywords_
 | call_edges |  | `Humanizer.dll:19-19` |
 | call_edges |  | `Humanizer.dll:20-20` |
 
-## Behaviour (fill in from evidence)
-- Inputs:
-- Outputs:
-- Edge cases:
+## Behaviour (from REA evidence)
+- Type `Humanizer.Localisation.NumberToWords.EnglishNumberToWordsConverter`, 10 methods: `Convert(i8)`, `Convert(i8,bool)`, `Convert(i8,bool,bool)`, `ConvertToOrdinal(i4)`, `ConvertToTuple(i4)`, `GetUnitValue`, `RemoveOnePrefix`, `ExceptionNumbersToWords`.
+- The ldstr literals give the full vocabulary: units, tens, scale formats `{0} quintillion…{0} hundred`, `and`, `minus {0}`, `th`, `ieth`, tuple names.
+- Call edges show that `Convert` recurses into `Convert` with defaults, so `addAnd:false` only affects the last group.
 
-## Unknowns
-- 
+## Unknowns / quirks
+- Negative ordinals come out cardinal (`minus five`). Ordinals drop a leading `one ` (`hundredth`).
+- `Int64.MinValue` overflows in the original; the rebuild throws `RangeError`.
