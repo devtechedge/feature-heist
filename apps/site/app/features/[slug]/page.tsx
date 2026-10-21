@@ -21,10 +21,10 @@ export default async function FeaturePage({ params }: { params: Promise<{ slug: 
         <dl>
           <dt>Target</dt><dd><a href={f.targetUrl}>{f.target}</a> ({f.targetLicense})</dd>
           <dt>REA command</dt><dd><code>{f.reaCommand}</code></dd>
-          <dt>REA provider</dt><dd>{f.slice ? `${f.slice.provider.name} (${f.slice.provider.version ?? "n/a"})` : "—"}</dd>
+          <dt>REA provider</dt><dd>{f.slice ? `${f.slice.provider.name} (${f.slice.provider.version ?? "n/a"})` : "-"}</dd>
           <dt>Evidence id</dt><dd className="mono" data-testid="evidence-id">{f.manifest?.evidence_id}</dd>
           <dt>Record sha256</dt><dd className="mono">{f.manifest?.record_sha256}</dd>
-          <dt>Record size</dt><dd>{f.manifest ? `${(f.manifest.record_bytes / 1e6).toFixed(2)} MB (stored gzipped)` : "—"}</dd>
+          <dt>Record size</dt><dd>{f.manifest ? `${(f.manifest.record_bytes / 1e6).toFixed(2)} MB (stored gzipped)` : "-"}</dd>
           <dt>Oracle</dt><dd>{f.oracle}</dd>
           <dt>Rebuild</dt><dd><a href={`https://github.com/devtechedge/feature-heist/tree/main/${f.rebuildPackage}`}><code>{f.rebuildPackage}</code></a></dd>
         </dl>

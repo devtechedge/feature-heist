@@ -68,15 +68,15 @@ function toInt32(n: number | bigint): bigint {
   return b;
 }
 
-/** `ToWords()` — cardinal words. `addAnd` only affects the final group, matching the original. */
+/** `ToWords()`: cardinal words. `addAnd` only affects the final group, matching the original. */
 export function toWords(n: number | bigint, opts: { addAnd?: boolean } = {}): string {
   return convert(toInt64(n), opts.addAnd ?? true, false);
 }
-/** `ToOrdinalWords()` — Int32 input, like the original ConvertToOrdinal(int). */
+/** `ToOrdinalWords()`: Int32 input, like the original ConvertToOrdinal(int). */
 export function toOrdinalWords(n: number | bigint): string {
   return convert(toInt32(n), true, true);
 }
-/** `ToTuple()` — "single", "double", ... or "{n}-tuple". */
+/** `ToTuple()`: "single", "double", ... or "{n}-tuple". */
 export function toTuple(n: number | bigint): string {
   const v = Number(toInt32(n));
   return TUPLES[v] ?? `${v}-tuple`;

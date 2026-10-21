@@ -4,8 +4,8 @@ export default function Home() {
   const features = getFeatures();
   return (
     <main>
-      <p className="lede">Each card is a feature lifted from a real app — an Electron editor, a mainnet contract, a web API, a .NET library — using
-        {" "}<a href="https://github.com/morluto/rea">REA</a> evidence, then rebuilt in TypeScript and checked against the original.</p>
+      <p className="lede">Each card is a feature lifted from a real app: an Electron editor, a mainnet contract, a web API, a .NET library. Each was traced using
+        {" "}<a href="https://github.com/morluto/rea">REA</a> evidence, and then rebuilt in TypeScript and checked against the original.</p>
       <div className="steps">
         <div><b>1 · Inspect</b><code>heist &lt;target&gt; "&lt;feature&gt;"</code> runs REA</div>
         <div><b>2 · Slice</b>Evidence is hashed, stored and cut to the feature</div>
