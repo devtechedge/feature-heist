@@ -78,6 +78,12 @@ importers:
         specifier: workspace:*
         version: link:../../evidence
 
+  packages/rebuilds/native-pan-crc:
+    devDependencies:
+      '@heist/evidence':
+        specifier: workspace:*
+        version: link:../../evidence
+
   packages/rebuilds/npm-search-client:
     devDependencies:
       '@heist/evidence':
