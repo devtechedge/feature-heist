@@ -10,6 +10,8 @@ export interface HeistOptions {
   keywords?: string[];
   outDir?: string;
   rea?: string;
+  /** Extra arguments appended to the rea command, e.g. ["--type", "Ns.Type"]. */
+  reaArgs?: string[];
   log?: (m: string) => void;
 }
 
@@ -85,7 +87,7 @@ export async function heist(o: HeistOptions): Promise<{ manifest: StoredManifest
   const log = o.log ?? (() => {});
   const rea = o.rea ?? "rea";
   const version = reaVersion(rea);
-  const args = planCommand(o.target);
+  const args = [...planCommand(o.target), ...(o.reaArgs ?? [])];
   const slug = slugify(`${basename(resolve(o.target))}-${o.feature}`);
   const dir = resolve(o.outDir ?? "evidence", slug);
   const tmp = mkdtempSync(join(tmpdir(), "heist-"));
