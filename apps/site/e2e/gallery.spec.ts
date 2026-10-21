@@ -36,3 +36,12 @@ test("number words demo", async ({ page }) => {
   await expect(page.getByTestId("words-out")).toContainText("ToWords: one hundred and one");
   await expect(page.getByTestId("words-out")).toContainText("ToOrdinalWords: hundred and first");
 });
+
+test("theme toggle switches and persists", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  await page.getByTestId("theme-toggle").click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+});
