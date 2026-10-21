@@ -29,6 +29,12 @@ importers:
 
   packages/evidence: {}
 
+  packages/rebuilds/english-number-words:
+    devDependencies:
+      '@heist/evidence':
+        specifier: workspace:*
+        version: link:../../evidence
+
   packages/rebuilds/markdown-toggle-format:
     devDependencies:
       '@heist/evidence':
