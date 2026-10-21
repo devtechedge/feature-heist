@@ -1,0 +1,67 @@
+{
+  "schema": "feature-heist/slice@1",
+  "feature": "npm registry search client",
+  "keywords": [
+    "/-/v1/search"
+  ],
+  "evidence_id": "ev_b2d45eca29cd317f1a1bde09445b88ad4fc84f71da33f4cc6061cb90ec19c152",
+  "record_sha256": "d213497b10214dc2cd035349ecff1790a55956d9f16c09f735f7496a8707929d",
+  "subject": {
+    "name": "npm-search.redacted.har",
+    "digest": {
+      "sha256": "cee25a8a9bca426367d06bca3d297f1951135dc0abd916feaf82bdcf73030f64"
+    },
+    "local_path": "/workspace/feature-heist/packages/rebuilds/npm-search-client/fixtures/npm-search.redacted.har",
+    "format": "file",
+    "architecture": null
+  },
+  "provider": {
+    "id": "har-schema/lossless-json",
+    "name": "REA HAR capture adapter",
+    "version": "har-schema@2.0.0;jsonc-parser@3.3.1;lossless-json@4.3.1"
+  },
+  "operation": "inspect_web_network_capture",
+  "summary": null,
+  "statistics": null,
+  "hits": [
+    {
+      "kind": "headers",
+      "label": "/-/v1/search?text=markdown%20editor&size=5",
+      "module_path": "npm-search.redacted.har",
+      "start_line": 2,
+      "end_line": 2,
+      "role_key": "normalized_result.records[0].reported.request.headers[2]"
+    },
+    {
+      "kind": "headers",
+      "label": "/-/v1/search?text=markdown%20editor&size=5&from=5",
+      "module_path": "npm-search.redacted.har",
+      "start_line": 2,
+      "end_line": 2,
+      "role_key": "normalized_result.records[1].reported.request.headers[2]"
+    },
+    {
+      "kind": "headers",
+      "label": "/-/v1/search?text=keywords:electron%20author:sindresorhus&size=3",
+      "module_path": "npm-search.redacted.har",
+      "start_line": 2,
+      "end_line": 2,
+      "role_key": "normalized_result.records[2].reported.request.headers[2]"
+    },
+    {
+      "kind": "headers",
+      "label": "/-/v1/search?text=react&size=2&quality=0.1&popularity=0.8&maintenance=0.1",
+      "module_path": "npm-search.redacted.har",
+      "start_line": 2,
+      "end_line": 2,
+      "role_key": "normalized_result.records[3].reported.request.headers[2]"
+    }
+  ],
+  "call_chain": [],
+  "limitations": [
+    "This is retained producer evidence, without live browser transaction IDs, scenario provenance, execution attribution or deployment authenticity. Recorded URLs are never fetched.",
+    "Every record is decoded before selection; no partial success is returned on malformed input or a resource limit.",
+    "Known authentication headers/cookies and explicitly marked literal values are excluded. Unknown extension names do not establish sensitivity.",
+    "A 32 MiB input, 96 MiB reply and 64-level nesting budget bound complete evidence. HAR/SAZ/qlog use a 192 MiB Node old-generation heap; mitmproxy decoding uses a 768 MiB Linux address-space limit. Each owned command has a 30-second deadline with independent cleanup."
+  ]
+}
