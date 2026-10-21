@@ -1,0 +1,677 @@
+{
+  "schema": "feature-heist/slice@1",
+  "feature": "english number to words",
+  "keywords": [
+    "englishnumbertowords"
+  ],
+  "evidence_id": "ev_7760baf9c3ec8e17093f04931fb473e62113b283ac16d7d70382bc9ea9fc894e",
+  "record_sha256": "0111a21487092478e6f840d0d9b495494fbea3ff243d9506f0cd753e002c0269",
+  "subject": {
+    "name": "Humanizer.dll",
+    "digest": {
+      "sha256": "2c522cd285de2e3a02520f91203f548e454b980821f10df90e801bd7d3f5c43e"
+    },
+    "local_path": "/workspace/feature-heist/packages/rebuilds/english-number-words/fixtures/Humanizer.dll",
+    "format": "pe",
+    "architecture": "x86"
+  },
+  "provider": {
+    "id": "rea-dotnet-static",
+    "name": "REA managed static analysis provider",
+    "version": "1"
+  },
+  "operation": "inspect_managed_members",
+  "summary": null,
+  "statistics": null,
+  "hits": [
+    {
+      "kind": "types",
+      "label": "EnglishNumberToWordsConverter",
+      "module_path": "Humanizer.dll",
+      "start_line": 0,
+      "end_line": 0,
+      "role_key": "normalized_result.types[0]"
+    },
+    {
+      "kind": "fields",
+      "label": "UnitsMap",
+      "module_path": "Humanizer.dll",
+      "start_line": 0,
+      "end_line": 0,
+      "role_key": "normalized_result.fields[0]"
+    },
+    {
+      "kind": "methods",
+      "label": "Convert",
+      "module_path": "Humanizer.dll",
+      "start_line": 0,
+      "end_line": 0,
+      "role_key": "normalized_result.methods[0]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 0,
+      "end_line": 0,
+      "role_key": "normalized_result.call_edges[0]"
+    },
+    {
+      "kind": "field_accesses",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 0,
+      "end_line": 0,
+      "role_key": "normalized_result.field_accesses[0]"
+    },
+    {
+      "kind": "fields",
+      "label": "TensMap",
+      "module_path": "Humanizer.dll",
+      "start_line": 1,
+      "end_line": 1,
+      "role_key": "normalized_result.fields[1]"
+    },
+    {
+      "kind": "methods",
+      "label": "Convert",
+      "module_path": "Humanizer.dll",
+      "start_line": 1,
+      "end_line": 1,
+      "role_key": "normalized_result.methods[1]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 1,
+      "end_line": 1,
+      "role_key": "normalized_result.call_edges[1]"
+    },
+    {
+      "kind": "field_accesses",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 1,
+      "end_line": 1,
+      "role_key": "normalized_result.field_accesses[1]"
+    },
+    {
+      "kind": "fields",
+      "label": "OrdinalExceptions",
+      "module_path": "Humanizer.dll",
+      "start_line": 2,
+      "end_line": 2,
+      "role_key": "normalized_result.fields[2]"
+    },
+    {
+      "kind": "methods",
+      "label": "ConvertToOrdinal",
+      "module_path": "Humanizer.dll",
+      "start_line": 2,
+      "end_line": 2,
+      "role_key": "normalized_result.methods[2]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 2,
+      "end_line": 2,
+      "role_key": "normalized_result.call_edges[2]"
+    },
+    {
+      "kind": "field_accesses",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 2,
+      "end_line": 2,
+      "role_key": "normalized_result.field_accesses[2]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 3,
+      "end_line": 3,
+      "role_key": "normalized_result.call_edges[3]"
+    },
+    {
+      "kind": "field_accesses",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 3,
+      "end_line": 3,
+      "role_key": "normalized_result.field_accesses[3]"
+    },
+    {
+      "kind": "methods",
+      "label": "GetUnitValue",
+      "module_path": "Humanizer.dll",
+      "start_line": 4,
+      "end_line": 4,
+      "role_key": "normalized_result.methods[4]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 4,
+      "end_line": 4,
+      "role_key": "normalized_result.call_edges[4]"
+    },
+    {
+      "kind": "field_accesses",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 4,
+      "end_line": 4,
+      "role_key": "normalized_result.field_accesses[4]"
+    },
+    {
+      "kind": "methods",
+      "label": "RemoveOnePrefix",
+      "module_path": "Humanizer.dll",
+      "start_line": 5,
+      "end_line": 5,
+      "role_key": "normalized_result.methods[5]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 5,
+      "end_line": 5,
+      "role_key": "normalized_result.call_edges[5]"
+    },
+    {
+      "kind": "field_accesses",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 5,
+      "end_line": 5,
+      "role_key": "normalized_result.field_accesses[5]"
+    },
+    {
+      "kind": "methods",
+      "label": "ExceptionNumbersToWords",
+      "module_path": "Humanizer.dll",
+      "start_line": 6,
+      "end_line": 6,
+      "role_key": "normalized_result.methods[6]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 6,
+      "end_line": 6,
+      "role_key": "normalized_result.call_edges[6]"
+    },
+    {
+      "kind": "field_accesses",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 6,
+      "end_line": 6,
+      "role_key": "normalized_result.field_accesses[6]"
+    },
+    {
+      "kind": "methods",
+      "label": "ConvertToTuple",
+      "module_path": "Humanizer.dll",
+      "start_line": 7,
+      "end_line": 7,
+      "role_key": "normalized_result.methods[7]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 7,
+      "end_line": 7,
+      "role_key": "normalized_result.call_edges[7]"
+    },
+    {
+      "kind": "methods",
+      "label": ".ctor",
+      "module_path": "Humanizer.dll",
+      "start_line": 8,
+      "end_line": 8,
+      "role_key": "normalized_result.methods[8]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 8,
+      "end_line": 8,
+      "role_key": "normalized_result.call_edges[8]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 9,
+      "end_line": 9,
+      "role_key": "normalized_result.call_edges[9]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 10,
+      "end_line": 10,
+      "role_key": "normalized_result.call_edges[10]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 11,
+      "end_line": 11,
+      "role_key": "normalized_result.call_edges[11]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 12,
+      "end_line": 12,
+      "role_key": "normalized_result.call_edges[12]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 13,
+      "end_line": 13,
+      "role_key": "normalized_result.call_edges[13]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 14,
+      "end_line": 14,
+      "role_key": "normalized_result.call_edges[14]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 15,
+      "end_line": 15,
+      "role_key": "normalized_result.call_edges[15]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 16,
+      "end_line": 16,
+      "role_key": "normalized_result.call_edges[16]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 17,
+      "end_line": 17,
+      "role_key": "normalized_result.call_edges[17]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 18,
+      "end_line": 18,
+      "role_key": "normalized_result.call_edges[18]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 19,
+      "end_line": 19,
+      "role_key": "normalized_result.call_edges[19]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 20,
+      "end_line": 20,
+      "role_key": "normalized_result.call_edges[20]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 21,
+      "end_line": 21,
+      "role_key": "normalized_result.call_edges[21]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 22,
+      "end_line": 22,
+      "role_key": "normalized_result.call_edges[22]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 23,
+      "end_line": 23,
+      "role_key": "normalized_result.call_edges[23]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 24,
+      "end_line": 24,
+      "role_key": "normalized_result.call_edges[24]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 25,
+      "end_line": 25,
+      "role_key": "normalized_result.call_edges[25]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 26,
+      "end_line": 26,
+      "role_key": "normalized_result.call_edges[26]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 27,
+      "end_line": 27,
+      "role_key": "normalized_result.call_edges[27]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 28,
+      "end_line": 28,
+      "role_key": "normalized_result.call_edges[28]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 29,
+      "end_line": 29,
+      "role_key": "normalized_result.call_edges[29]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 30,
+      "end_line": 30,
+      "role_key": "normalized_result.call_edges[30]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 31,
+      "end_line": 31,
+      "role_key": "normalized_result.call_edges[31]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 32,
+      "end_line": 32,
+      "role_key": "normalized_result.call_edges[32]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 33,
+      "end_line": 33,
+      "role_key": "normalized_result.call_edges[33]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 34,
+      "end_line": 34,
+      "role_key": "normalized_result.call_edges[34]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 35,
+      "end_line": 35,
+      "role_key": "normalized_result.call_edges[35]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 36,
+      "end_line": 36,
+      "role_key": "normalized_result.call_edges[36]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 37,
+      "end_line": 37,
+      "role_key": "normalized_result.call_edges[37]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 38,
+      "end_line": 38,
+      "role_key": "normalized_result.call_edges[38]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 39,
+      "end_line": 39,
+      "role_key": "normalized_result.call_edges[39]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 40,
+      "end_line": 40,
+      "role_key": "normalized_result.call_edges[40]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 41,
+      "end_line": 41,
+      "role_key": "normalized_result.call_edges[41]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 42,
+      "end_line": 42,
+      "role_key": "normalized_result.call_edges[42]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 43,
+      "end_line": 43,
+      "role_key": "normalized_result.call_edges[43]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 44,
+      "end_line": 44,
+      "role_key": "normalized_result.call_edges[44]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 45,
+      "end_line": 45,
+      "role_key": "normalized_result.call_edges[45]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 46,
+      "end_line": 46,
+      "role_key": "normalized_result.call_edges[46]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 47,
+      "end_line": 47,
+      "role_key": "normalized_result.call_edges[47]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 48,
+      "end_line": 48,
+      "role_key": "normalized_result.call_edges[48]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 49,
+      "end_line": 49,
+      "role_key": "normalized_result.call_edges[49]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 50,
+      "end_line": 50,
+      "role_key": "normalized_result.call_edges[50]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 51,
+      "end_line": 51,
+      "role_key": "normalized_result.call_edges[51]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 52,
+      "end_line": 52,
+      "role_key": "normalized_result.call_edges[52]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 53,
+      "end_line": 53,
+      "role_key": "normalized_result.call_edges[53]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 54,
+      "end_line": 54,
+      "role_key": "normalized_result.call_edges[54]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 55,
+      "end_line": 55,
+      "role_key": "normalized_result.call_edges[55]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 56,
+      "end_line": 56,
+      "role_key": "normalized_result.call_edges[56]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 57,
+      "end_line": 57,
+      "role_key": "normalized_result.call_edges[57]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 58,
+      "end_line": 58,
+      "role_key": "normalized_result.call_edges[58]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 59,
+      "end_line": 59,
+      "role_key": "normalized_result.call_edges[59]"
+    },
+    {
+      "kind": "call_edges",
+      "label": null,
+      "module_path": "Humanizer.dll",
+      "start_line": 60,
+      "end_line": 60,
+      "role_key": "normalized_result.call_edges[60]"
+    }
+  ],
+  "call_chain": [],
+  "limitations": [
+    "Metadata tokens are build-local coordinates and are only meaningful with the reported artifact SHA-256 and MVID.",
+    "CIL instruction anchors are decoded from file-backed method bodies only; no target assembly is loaded or executed.",
+    "Exported types are reported from ExportedType rows as declared; forwarded types are not resolved in their implementing assemblies.",
+    "User strings are the #US literals loaded by ldstr in the inspected method bodies, with their own coverage; instruction anchors and normalized CIL digests keep their build-local tokens.",
+    "Member signatures decode ECMA-335 primitive, class, valuetype, generic instantiation, generic variable, pointer, byref, single-dimension and general array, function pointer, custom modifier, and typed reference forms; class and valuetype operands keep their encoded TypeDefOrRefOrSpec values, and unsupported forms such as vararg sentinels retain raw signature hashes.",
+    "Types, fields, methods, call edges, field accesses, and user strings cover only the selected declaring types; coverage describes that selection. Edge targets outside it keep their names but are not described."
+  ]
+}

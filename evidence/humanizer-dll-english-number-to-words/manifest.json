@@ -1,0 +1,15 @@
+{
+  "schema": "feature-heist/manifest@1",
+  "slug": "humanizer-dll-english-number-to-words",
+  "feature": "english number to words",
+  "target": "packages/rebuilds/english-number-words/fixtures/Humanizer.dll",
+  "rea_version": "6.7.0",
+  "created_at": "2026-10-21T15:06:35.723Z",
+  "evidence_id": "ev_7760baf9c3ec8e17093f04931fb473e62113b283ac16d7d70382bc9ea9fc894e",
+  "record_sha256": "0111a21487092478e6f840d0d9b495494fbea3ff243d9506f0cd753e002c0269",
+  "record_bytes": 289904,
+  "files": {
+    "record_gz": "record.json.gz",
+    "slice": "slice.json"
+  }
+}
