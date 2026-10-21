@@ -36,5 +36,11 @@ describe("evidence", () => {
     expect(sliceFeature(JSON.stringify(evm), "x", ["uint256"]).hits.map((h) => h.label)).toEqual(["2e1a7d4d"]);
     expect(sliceFeature(JSON.stringify(evm), "x", ["*"]).hits).toHaveLength(2);
   });
+  it("keeps a native function dossier for analyze_function records", () => {
+    const fn = { ...rec, operation: "analyze_function", raw_result: { value: {} }, normalized_result: {
+      procedure: { name: "fh_pan", address: "0x1013c0" }, pseudocode: "\nint fh_pan(){}\n", assembly: ["a", "b"], callers: [{ name: "main" }], callees: [] } };
+    expect(sliceFeature(JSON.stringify(fn), "pan", ["fh_pan"]).native).toEqual({ procedure: "fh_pan", address: "0x1013c0", pseudocode: "int fh_pan(){}", callers: ["main"], callees: [], instructions: 2 });
+    expect(sliceFeature(JSON.stringify(rec), "x", ["toggleformat"]).native).toBeNull();
+  });
   it("slugifies", () => expect(slugify("Bold / Italic toggle!")).toBe("bold-italic-toggle"));
 });

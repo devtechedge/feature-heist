@@ -40,6 +40,8 @@ export interface FeatureSlice {
   statistics: unknown;
   hits: SemanticHit[];
   call_chain: string[];
+  /** Native function dossiers: the provider's pseudocode and callers, kept verbatim for review. */
+  native?: { procedure: string; address: string; pseudocode: string; callers: string[]; callees: string[]; instructions: number } | null;
   limitations: unknown[];
 }
 
@@ -105,7 +107,7 @@ export function sliceFeature(raw: string, feature: string, keywords: string[]): 
     schema: "feature-heist/slice@1", feature, keywords, evidence_id: r.evidence_id,
     record_sha256: sha256(raw), subject: r.subject, provider: r.provider, operation: r.operation,
     summary: nr.summary ?? null, statistics: nr.statistics ?? null, hits,
-    call_chain: [...callers, ...defs], limitations: r.limitations ?? [],
+    call_chain: [...callers, ...defs], native: nativeDossier(r), limitations: r.limitations ?? [],
   };
 }
 
@@ -168,4 +170,17 @@ export function genericHits(r: ReaEvidenceRecord, kws: string[], cap = 500): Sem
   walk(r.raw_result, "raw_result");
   if (out.length === 0) walk(r.normalized_result, "normalized_result");
   return out;
+}
+
+/** Extract a compact dossier from `rea function … --provider ghidra|hopper|ida` records. */
+export function nativeDossier(r: ReaEvidenceRecord): FeatureSlice["native"] {
+  if (r.operation !== "analyze_function") return null;
+  const v = (r.normalized_result as any) ?? {};
+  const name = (x: any) => String(x?.name ?? x?.address ?? "?");
+  return {
+    procedure: name(v.procedure), address: String(v.procedure?.address ?? ""),
+    pseudocode: String(v.pseudocode ?? "").trim(),
+    callers: (v.callers ?? []).map(name), callees: (v.callees ?? []).map(name),
+    instructions: Array.isArray(v.assembly) ? v.assembly.length : 0,
+  };
 }
