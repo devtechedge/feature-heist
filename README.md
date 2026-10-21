@@ -20,6 +20,7 @@ Feature Heist turns [REA (Reverse Engineer Anything)](https://github.com/morluto
 | 🪙 | [WETH9 ledger](docs/features/weth9-ledger.md) | **EVM bytecode** (mainnet WETH9) | `inspect-evm-interface` | 1,500-call differential vs the original bytecode in `@ethereumjs/evm` |
 | 🔎 | [npm search client](docs/features/npm-search-client.md) | **Web traffic** (HAR of registry.npmjs.org) | `inspect-web-network-capture` | Byte-exact URL round-trips + HAR replay |
 | 🔢 | [English number words](docs/features/english-number-words.md) | **.NET assembly** (Humanizer 2.14.1, MIT) | `inspect-managed-members` | 4,830 golden rows from the real library, regenerated in CI |
+| ⚙️ | [Native pan + CRC-16](docs/features/native-pan-crc.md) | **Native ELF** (own MIT C target, gcc -O2) | `function --provider ghidra` | 25,000-case differential vs the compiled binary, incl. 32-bit overflow |
 
 ## Live Demo
 
@@ -48,7 +49,7 @@ flowchart LR
   R --> S[apps/site gallery]
 ```
 
-1. **Inspect.** `heist` picks the REA command for the target type: a JS/Electron directory or `.asar`, `.har`/`.saz`, EVM `.hex`/`.bin`, or `.dll`/`.exe`. It streams REA's JSON to disk (one record here is 106 MB) and shows REA's progress.
+1. **Inspect.** `heist` picks the REA command for the target type: a JS/Electron directory or `.asar`, `.har`/`.saz`, EVM `.hex`/`.bin`, `.dll`/`.exe`, or a native ELF/PE/Mach-O function through Ghidra. It streams REA's JSON to disk (one record here is 106 MB) and shows REA's progress.
 2. **Store and slice.** `@heist/evidence` validates the record, gzips it, pins its SHA-256 in `manifest.json`, and writes a feature slice:
    - For JavaScript: semantic-graph nodes plus a caller → definition call chain.
    - For other targets: matching records, functions or members.
@@ -63,8 +64,9 @@ See [docs/architecture.md](docs/architecture.md) and [docs/evidence-schema.md](d
 |---|---|
 | Analysis | REA 6.7.0 CLI (JS graph, evmole EVM, HAR adapter, .NET metadata) |
 | Monorepo | pnpm 9 workspaces, Turborepo, TypeScript strict, Node 22 |
-| Tests | Vitest (unit, differential, golden), Playwright (e2e), @ethereumjs/evm, .NET 8 oracle |
-| Site | Next.js 15 static export, React 19, Vercel |
+| Tests | Vitest (unit, differential, golden), Playwright (e2e), @ethereumjs/evm, .NET 8 oracle, compiled ELF oracle |
+| Native | Ghidra 12.1.4 headless + JDK 21 via REA (`--provider ghidra`) |
+| Site | Next.js 15 static export, React 19, Vercel (redeploys on every push to main) |
 | CI | GitHub Actions: build, typecheck, tests, e2e, oracle diff |
 
 ## Quick start
@@ -97,13 +99,24 @@ pnpm heist token.hex "token transfers" --keywords '*'
 
 # .NET assembly, scoped to one type
 pnpm heist Lib.dll "slug generator" --keywords Slug --rea-args "--type My.Namespace.Slugger"
+
+# Native binary function (Ghidra 12 + JDK 21; see rea doctor --provider ghidra)
+pnpm heist ./mybin "pan math" --procedure fh_pan --keywords fh_pan
 ```
 
-Output goes to `evidence/<slug>/`. Then:
+Output goes to `evidence/<slug>/`. Complete `SPEC.md`, then scaffold the rebuild:
 
-1. Complete `SPEC.md`.
-2. Create `packages/rebuilds/<name>`.
-3. Add an oracle-backed test.
+```bash
+pnpm heist rebuild <evidence-slug> --name my-feature --title "My feature"
+```
+
+This creates:
+- `packages/rebuilds/my-feature`, with a stub that has the SPEC behaviour in its doc comment
+- a hash-verified evidence test and a test file with todo oracle cases
+- a write-up
+- a gallery entry
+
+It never overwrites existing files. Next, implement the stub and replace the todos with an oracle-backed test.
 
 [CONTRIBUTING.md](CONTRIBUTING.md) walks through it.
 
@@ -130,19 +143,20 @@ docs/                    architecture, evidence schema, per-feature write-ups
 
 - **Markdownify**: fully selecting `**hi**` and pressing Ctrl+B produces `**h****i**`. The marker-peeling loop re-tests the *original* selection text on every pass. The rebuild reproduces this, and the test pins it.
 - **WETH9**: `name`, `symbol` and `decimals` come from storage initialisers, not runtime code. Runtime code alone answers `decimals() = 0`. The harness seeds storage slots 0–2 with the exact words verified with `eth_getStorageAt`.
+- **pancrc (native)**: Ghidra types `fh_crc16` as returning a 32-bit `uint` seeded with `0xffffffff`. The 16-bit truncation only happens at the call site.
 - **Humanizer**: `ToWords(addAnd: false)` only drops the *last* "and", because the recursive call uses default arguments (visible in REA's call edges). Negative ordinals come out cardinal (`minus five`).
 
 ## Limitations
 
 - REA 6.7.0's `rea evidence-export` validates MCP session *bundles*. One-shot CLI commands emit single records, so Feature Heist stores the record itself with its own SHA-256 manifest.
-- The runner covers the four target families above. Native binaries (Hopper/Ghidra/IDA) are next; see the roadmap.
+- Native support is one function dossier per run (`--procedure`). Whole-program `rea analyze` snapshots aren't stored yet.
 - Rebuilds reproduce **behaviour**, not code. Third-party artifacts are kept only as licensed oracles; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## Roadmap
 
-- Native target routing (`rea decompile`/`xrefs` via Ghidra) and a C → TS rebuild with a differential harness.
 - Import MCP session bundles through `rea evidence-export`, and compare evidence across target versions with `rea compare`.
-- `heist rebuild` scaffolder: generate a package, oracle harness and site entry from a SPEC.
+- Store native `rea analyze` snapshots, and add Hopper and IDA provider runs to the native example.
+- Let `heist rebuild` generate oracle harness templates for each target type (VM sandbox, EVM, replay, golden).
 
 ## Responsible use
 
