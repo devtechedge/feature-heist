@@ -1,7 +1,7 @@
 /** Curated metadata per rebuilt feature. Evidence numbers are read from /evidence at build time. */
 export interface FeatureMeta {
   slug: string; title: string; tagline: string; targetType: string; target: string; targetLicense: string;
-  targetUrl: string; reaCommand: string; rebuildPackage: string; oracle: string; demo: "toggle" | "weth" | "npm" | "words" | "native";
+  targetUrl: string; reaCommand: string; rebuildPackage: string; oracle: string; demo: "toggle" | "weth" | "npm" | "words" | "native" | "none";
   /** Extra evidence slugs shown on the same page. */
   related?: string[];
 }

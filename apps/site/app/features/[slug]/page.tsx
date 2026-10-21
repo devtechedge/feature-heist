@@ -15,7 +15,7 @@ export default async function FeaturePage({ params }: { params: Promise<{ slug: 
       <span className="tag">{f.targetType}</span>
       <h2 style={{ fontSize: 34, margin: "8px 0" }}>{f.title}</h2>
       <p className="lede">{f.tagline}</p>
-      <section className="demo"><h3 style={{ marginTop: 0 }}>Try the rebuild</h3><Demo kind={f.demo} /></section>
+      {f.demo !== "none" && <section className="demo"><h3 style={{ marginTop: 0 }}>Try the rebuild</h3><Demo kind={f.demo} /></section>}
       <section>
         <h3>Provenance</h3>
         <dl>
