@@ -1,8 +1,8 @@
 import { test, expect } from "@playwright/test";
 
-test("gallery lists all four rebuilt features", async ({ page }) => {
+test("gallery lists all five rebuilt features", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByTestId("feature-card")).toHaveCount(4);
+  await expect(page.getByTestId("feature-card")).toHaveCount(5);
   await expect(page.getByText("evidence missing")).toHaveCount(0);
 });
 
@@ -44,4 +44,11 @@ test("theme toggle switches and persists", async ({ page }) => {
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+});
+
+test("native demo runs the rebuilt pan and CRC with Ghidra pseudocode shown", async ({ page }) => {
+  await page.goto("/features/pancrc-fh-pan-native/");
+  await expect(page.getByTestId("crc-out")).toHaveText("fh_crc16 = 0x29B1");
+  await expect(page.getByTestId("pan-out")).toContainText("fh_pan(480, 640) = 64");
+  await expect(page.getByTestId("pseudocode")).toHaveCount(2);
 });
