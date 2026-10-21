@@ -96,6 +96,7 @@ export function sliceFeature(raw: string, feature: string, keywords: string[]): 
       role_key: id.role_key ?? "",
     });
   }
+  if (!nr.semantic_graph) hits.push(...genericHits(r, kws));
   hits.sort((a, b) => a.module_path.localeCompare(b.module_path) || a.start_line - b.start_line);
   // Call chain: modules that reference a matched function, ordered caller -> definition.
   const defs = new Set(hits.filter((h) => h.kind === "function").map((h) => h.module_path));
@@ -135,3 +136,36 @@ export function load(dir: string): { manifest: StoredManifest; record: ReaEviden
 }
 
 export const hasEvidence = (dir: string) => existsSync(join(dir, "manifest.json"));
+
+/**
+ * For records without a JS semantic graph (EVM, HAR, .NET, ...): walk raw_result and
+ * normalized_result and keep every object inside an array whose JSON mentions a keyword.
+ * The keyword "*" keeps everything (capped).
+ */
+export function genericHits(r: ReaEvidenceRecord, kws: string[], cap = 500): SemanticHit[] {
+  const out: SemanticHit[] = [];
+  const all = kws.includes("*");
+  const walk = (v: unknown, path: string) => {
+    if (out.length >= cap) return;
+    if (Array.isArray(v)) {
+      v.forEach((item, i) => {
+        if (item && typeof item === "object" && !Array.isArray(item)) {
+          const j = JSON.stringify(item);
+          if (j.length < 4000 && (all || kws.some((k) => j.toLowerCase().includes(k)))) {
+            const o = item as Record<string, unknown>;
+            const label = (o.selector ?? o.name ?? o.url ?? o.label ?? null) as string | null;
+            out.push({ kind: path.split(".").pop() ?? "item", label: label === null ? null : String(label),
+              module_path: r.subject.name, start_line: i, end_line: i, role_key: `${path}[${i}]` });
+            return;
+          }
+        }
+        walk(item, `${path}[${i}]`);
+      });
+    } else if (v && typeof v === "object") {
+      for (const [k, x] of Object.entries(v)) walk(x, path ? `${path}.${k}` : k);
+    }
+  };
+  walk(r.raw_result, "raw_result");
+  if (out.length === 0) walk(r.normalized_result, "normalized_result");
+  return out;
+}

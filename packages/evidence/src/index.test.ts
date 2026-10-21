@@ -31,5 +31,10 @@ describe("evidence", () => {
     writeFileSync(join(d, "manifest.json"), JSON.stringify({ ...m, record_sha256: "0" }));
     expect(() => load(d)).toThrow(/hash mismatch/);
   });
+  it("falls back to generic array hits for non-JS records (EVM-style)", () => {
+    const evm = { ...rec, operation: "inspect_evm_interface", raw_result: { functions: [{ selector: "d0e30db0", arguments: "" }, { selector: "2e1a7d4d", arguments: "uint256" }] }, normalized_result: {} };
+    expect(sliceFeature(JSON.stringify(evm), "x", ["uint256"]).hits.map((h) => h.label)).toEqual(["2e1a7d4d"]);
+    expect(sliceFeature(JSON.stringify(evm), "x", ["*"]).hits).toHaveLength(2);
+  });
   it("slugifies", () => expect(slugify("Bold / Italic toggle!")).toBe("bold-italic-toggle"));
 });
