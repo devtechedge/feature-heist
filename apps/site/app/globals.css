@@ -39,3 +39,4 @@ pre::-webkit-scrollbar, textarea::-webkit-scrollbar { width:8px; height:8px; }
 pre::-webkit-scrollbar-thumb, textarea::-webkit-scrollbar-thumb { background:transparent; border-radius:8px; }
 pre:hover::-webkit-scrollbar-thumb, textarea:hover::-webkit-scrollbar-thumb { background:var(--thumb); }
 ::-webkit-scrollbar-button { display:none; }
+.demo pre { white-space: pre-wrap; word-break: break-word; }
