@@ -35,6 +35,8 @@ Feature Heist turns [REA (Reverse Engineer Anything)](https://github.com/morluto
 | ![Gallery of rebuilt features](docs/screenshots/01-gallery.png) | ![Markdown toggle rebuild running in the browser](docs/screenshots/02-markdown-toggle.png) |
 | **WETH9 demo and provenance** | **Number words, light theme** |
 | ![WETH9 ledger demo with REA provenance](docs/screenshots/03-weth9-provenance.png) | ![English number words demo in light theme](docs/screenshots/04-number-words-light.png) |
+| **Native ELF via Ghidra** | |
+| ![Native pan and CRC-16 rebuilt from Ghidra pseudocode](docs/screenshots/05-native-ghidra.png) | |
 
 Every rebuild also has an `evidence.test.ts`. It loads the stored REA record, verifies its SHA-256, and checks that the vendored fixture is the *same bytes* REA analysed.
 
