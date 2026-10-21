@@ -1,0 +1,35 @@
+name: CI
+on:
+  push: { branches: [main] }
+  pull_request:
+permissions: { contents: read }
+concurrency: { group: "ci-${{ github.ref }}", cancel-in-progress: true }
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - name: Install REA (used by the runner's end-to-end test)
+        run: npm install --global rea-agents@6.7.0 && rea --version
+      - run: pnpm build
+      - run: pnpm typecheck
+      - run: pnpm test
+      - name: Install Playwright Chromium
+        run: pnpm --filter @heist/site exec playwright install --with-deps chromium
+      - run: pnpm e2e
+        env: { CI: "true" }
+
+  humanizer-oracle:
+    name: Re-generate Humanizer golden data and diff
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with: { dotnet-version: "8.0.x" }
+      - run: dotnet run -c Release --project tools/humanizer-oracle > /tmp/golden.jsonl
+      - run: diff -u packages/rebuilds/english-number-words/fixtures/humanizer-2.14.1-golden.jsonl /tmp/golden.jsonl
