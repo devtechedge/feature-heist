@@ -4,6 +4,7 @@
 
 ### See a feature you like. Get the evidence. Ship a tested rebuild.
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-feature--heist.vercel.app-ff5a1f?style=flat-square)](https://feature-heist.vercel.app)
 [![CI](https://github.com/devtechedge/feature-heist/actions/workflows/ci.yml/badge.svg)](https://github.com/devtechedge/feature-heist/actions/workflows/ci.yml)
 ![REA 6.7.0](https://img.shields.io/badge/REA-6.7.0-5c4ee5?style=flat-square)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6?style=flat-square)
@@ -19,6 +20,20 @@ Feature Heist turns [REA (Reverse Engineer Anything)](https://github.com/morluto
 | 🪙 | [WETH9 ledger](docs/features/weth9-ledger.md) | **EVM bytecode** (mainnet WETH9) | `inspect-evm-interface` | 1,500-call differential vs the original bytecode in `@ethereumjs/evm` |
 | 🔎 | [npm search client](docs/features/npm-search-client.md) | **Web traffic** (HAR of registry.npmjs.org) | `inspect-web-network-capture` | Byte-exact URL round-trips + HAR replay |
 | 🔢 | [English number words](docs/features/english-number-words.md) | **.NET assembly** (Humanizer 2.14.1, MIT) | `inspect-managed-members` | 4,830 golden rows from the real library, regenerated in CI |
+
+## Live Demo
+
+**[feature-heist.vercel.app](https://feature-heist.vercel.app)**
+
+> The gallery is a static site. Every demo runs the rebuilt TypeScript package in your browser, and the provenance tables come from the stored REA evidence. Nothing runs server-side, and the npm demo only builds the request URL; the link opens the live registry response.
+
+## Screenshots
+
+| Gallery | Markdown toggle demo |
+|---|---|
+| ![Gallery of rebuilt features](docs/screenshots/01-gallery.png) | ![Markdown toggle rebuild running in the browser](docs/screenshots/02-markdown-toggle.png) |
+| **WETH9 demo and provenance** | **Number words, light theme** |
+| ![WETH9 ledger demo with REA provenance](docs/screenshots/03-weth9-provenance.png) | ![English number words demo in light theme](docs/screenshots/04-number-words-light.png) |
 
 Every rebuild also has an `evidence.test.ts`. It loads the stored REA record, verifies its SHA-256, and checks that the vendored fixture is the *same bytes* REA analysed.
 
@@ -41,6 +56,16 @@ flowchart LR
 4. **Rebuild and prove.** Each rebuild is a pure TypeScript package, tested differentially against the original.
 
 See [docs/architecture.md](docs/architecture.md) and [docs/evidence-schema.md](docs/evidence-schema.md).
+
+## Stack
+
+| Layer | Tech |
+|---|---|
+| Analysis | REA 6.7.0 CLI (JS graph, evmole EVM, HAR adapter, .NET metadata) |
+| Monorepo | pnpm 9 workspaces, Turborepo, TypeScript strict, Node 22 |
+| Tests | Vitest (unit, differential, golden), Playwright (e2e), @ethereumjs/evm, .NET 8 oracle |
+| Site | Next.js 15 static export, React 19, Vercel |
+| CI | GitHub Actions: build, typecheck, tests, e2e, oracle diff |
 
 ## Quick start
 
@@ -118,7 +143,6 @@ docs/                    architecture, evidence schema, per-feature write-ups
 - Native target routing (`rea decompile`/`xrefs` via Ghidra) and a C → TS rebuild with a differential harness.
 - Import MCP session bundles through `rea evidence-export`, and compare evidence across target versions with `rea compare`.
 - `heist rebuild` scaffolder: generate a package, oracle harness and site entry from a SPEC.
-- Deploy the gallery to GitHub Pages (`SITE_BASE_PATH=/feature-heist pnpm --filter @heist/site build`).
 
 ## Responsible use
 
