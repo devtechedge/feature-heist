@@ -5,3 +5,8 @@ out
 .turbo
 evidence/**/record.json
 *.tsbuildinfo
+.env
+.env*.local
+.vercel
+playwright-report
+test-results
