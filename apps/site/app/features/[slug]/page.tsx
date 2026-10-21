@@ -32,6 +32,13 @@ export default async function FeaturePage({ params }: { params: Promise<{ slug: 
       {f.slice && f.slice.call_chain.length > 0 && (
         <section><h3>Call chain recovered by REA</h3><ol>{f.slice.call_chain.map((c) => <li key={c}><code>{c}</code></li>)}</ol></section>
       )}
+      {[f.slice, ...f.relatedSlices].filter((x) => x?.native).map((x) => (
+        <section key={x!.native!.procedure}>
+          <h3>Ghidra pseudocode via REA: <code>{x!.native!.procedure}</code> @ {x!.native!.address}</h3>
+          <p className="muted">Called from {x!.native!.callers.join(", ")} · {x!.native!.instructions} instructions</p>
+          <pre data-testid="pseudocode">{x!.native!.pseudocode}</pre>
+        </section>
+      ))}
       <section>
         <h3>Evidence hits ({hits.length})</h3>
         <table><thead><tr><th>kind</th><th>label</th><th>where</th></tr></thead>
