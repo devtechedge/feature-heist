@@ -1,0 +1,157 @@
+{
+  "schema": "feature-heist/slice@1",
+  "feature": "bold italic strikethrough toggle",
+  "keywords": [
+    "toggleformat",
+    "_toggleformat"
+  ],
+  "evidence_id": "ev_36d4e2f2aa64888469a85805d70facd3988f1c09349a421168004102ef75fd1b",
+  "record_sha256": "e39f19de6ba4de3eeb3d85cd8234e954c0041aa5b6bb0db7ed39a5f4ccc0e20f",
+  "subject": {
+    "name": "electron-markdownify",
+    "digest": {
+      "sha256": "492289335d8ac351598ae592b9ac7ae3433488d9e2bbb14caeb59881c16c1c6d"
+    },
+    "local_path": "/workspace/targets/electron-markdownify",
+    "format": "directory",
+    "architecture": null
+  },
+  "provider": {
+    "id": "rea-javascript-application",
+    "name": "REA JavaScript application analyzer",
+    "version": "1"
+  },
+  "operation": "analyze_javascript_application",
+  "summary": {
+    "browser_windows": 1,
+    "explicit_web_preferences": 1,
+    "preload_entrypoints": 0,
+    "context_bridge_apis": 0,
+    "exposed_api_members": 0,
+    "ipc": {
+      "operations": 1,
+      "literal_channels": 1,
+      "dynamic_channel_operations": 0,
+      "renderer_transmissions": 0,
+      "renderer_listeners": 0,
+      "main_handlers": 1,
+      "paired_renderer_transmissions": 0,
+      "ambiguous_renderer_transmissions": 0,
+      "unpaired_literal_renderer_transmissions": 0
+    },
+    "sender_validation_observations": 0,
+    "utility_processes": 0,
+    "resolved_utility_entrypoints": 0,
+    "native_addon_bindings": 0,
+    "resolved_native_addon_bindings": 0
+  },
+  "statistics": {
+    "relevant_files": 20,
+    "nested_asar_containers": 0,
+    "text_bytes_read": 621839,
+    "invalid_utf8_files": 0,
+    "parsed_javascript_files": 18,
+    "skipped_javascript_files": 0,
+    "visited_ast_nodes": 119920,
+    "findings": 103,
+    "modules": 0,
+    "parse_failures": 0
+  },
+  "hits": [
+    {
+      "kind": "function",
+      "label": "toggleFormat",
+      "module_path": "app/scripts/format.js",
+      "start_line": 8,
+      "end_line": 21,
+      "role_key": "callable:callable:function:272:561"
+    },
+    {
+      "kind": "expression",
+      "label": "variable",
+      "module_path": "app/scripts/format.js",
+      "start_line": 8,
+      "end_line": 8,
+      "role_key": "definition:scope:program:0:9536:binding:toggleFormat:0"
+    },
+    {
+      "kind": "binding",
+      "label": "toggleFormat",
+      "module_path": "app/scripts/format.js",
+      "start_line": 8,
+      "end_line": 8,
+      "role_key": "binding:scope:program:0:9536:binding:toggleFormat"
+    },
+    {
+      "kind": "expression",
+      "label": "_toggleFormat",
+      "module_path": "app/scripts/format.js",
+      "start_line": 19,
+      "end_line": 19,
+      "role_key": "reference:7:read:_toggleFormat"
+    },
+    {
+      "kind": "binding",
+      "label": "_toggleFormat",
+      "module_path": "app/scripts/format.js",
+      "start_line": 23,
+      "end_line": 23,
+      "role_key": "binding:scope:program:0:9536:binding:_toggleFormat"
+    },
+    {
+      "kind": "function",
+      "label": "_toggleFormat",
+      "module_path": "app/scripts/format.js",
+      "start_line": 23,
+      "end_line": 105,
+      "role_key": "callable:callable:function:583:3298"
+    },
+    {
+      "kind": "expression",
+      "label": "variable",
+      "module_path": "app/scripts/format.js",
+      "start_line": 23,
+      "end_line": 23,
+      "role_key": "definition:scope:program:0:9536:binding:_toggleFormat:0"
+    },
+    {
+      "kind": "expression",
+      "label": "toggleFormat",
+      "module_path": "app/scripts/ipc_renderer.js",
+      "start_line": 103,
+      "end_line": 103,
+      "role_key": "reference:86:read:toggleFormat"
+    },
+    {
+      "kind": "expression",
+      "label": "toggleFormat",
+      "module_path": "app/scripts/ipc_renderer.js",
+      "start_line": 107,
+      "end_line": 107,
+      "role_key": "reference:88:read:toggleFormat"
+    },
+    {
+      "kind": "expression",
+      "label": "toggleFormat",
+      "module_path": "app/scripts/ipc_renderer.js",
+      "start_line": 111,
+      "end_line": 111,
+      "role_key": "reference:90:read:toggleFormat"
+    }
+  ],
+  "call_chain": [
+    "app/scripts/ipc_renderer.js",
+    "app/scripts/format.js"
+  ],
+  "limitations": [
+    "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+    "Electron API identity follows proven lexical module aliases and structurally verified module-namespace interop. Other reassignments, dynamic selections, and visibly overwritten namespace members are unresolved; missing findings do not establish absence. Arbitrary call side effects and runtime registration are not evaluated.",
+    "Electron relationships are derived from inert syntax; runtime registration, reachability, defaults, and enforcement remain unproven.",
+    "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+    "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+    "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+    "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+    "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code.",
+    "index.html has 3 inline JavaScript bodies starting at lines 143, 146, 160 that were not analyzed; endpoints, storage, imports and other facts in them are absent from the evidence."
+  ]
+}

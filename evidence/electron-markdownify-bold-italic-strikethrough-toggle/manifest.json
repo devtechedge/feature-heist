@@ -1,0 +1,15 @@
+{
+  "schema": "feature-heist/manifest@1",
+  "slug": "electron-markdownify-bold-italic-strikethrough-toggle",
+  "feature": "bold italic strikethrough toggle",
+  "target": "/workspace/targets/electron-markdownify",
+  "rea_version": "6.7.0",
+  "created_at": "2026-10-21T14:58:04.127Z",
+  "evidence_id": "ev_36d4e2f2aa64888469a85805d70facd3988f1c09349a421168004102ef75fd1b",
+  "record_sha256": "e39f19de6ba4de3eeb3d85cd8234e954c0041aa5b6bb0db7ed39a5f4ccc0e20f",
+  "record_bytes": 106687264,
+  "files": {
+    "record_gz": "record.json.gz",
+    "slice": "slice.json"
+  }
+}
