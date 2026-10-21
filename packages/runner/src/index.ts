@@ -16,10 +16,16 @@ export interface HeistOptions {
 /** Choose the REA command for a target. Directories / .asar are JS/Electron apps; others go through generic inspect. */
 export function planCommand(target: string): string[] {
   const abs = resolve(target);
+  const lower = abs.toLowerCase();
+  if (lower.endsWith(".har")) return ["inspect-web-network-capture", abs, "har", "--format", "json"];
+  if (lower.endsWith(".saz")) return ["inspect-web-network-capture", abs, "saz", "--format", "json"];
+  if (lower.endsWith(".hex") || lower.endsWith(".evm")) return ["inspect-evm-interface", abs, "hex", "--format", "json"];
+  if (lower.endsWith(".bin")) return ["inspect-evm-interface", abs, "raw", "--format", "json"];
+  if (lower.endsWith(".dll") || lower.endsWith(".exe")) return ["inspect-managed-members", abs, "--format", "json"];
   if (abs.endsWith(".asar") || (existsSync(abs) && statSync(abs).isDirectory())) {
     return ["analyze-javascript-application", abs, "--json"];
   }
-  throw new Error(`unsupported target (v0.1 handles JS/Electron directories and .asar): ${target}`);
+  throw new Error(`unsupported target (supported: JS/Electron dir or .asar, .har/.saz, .hex/.evm/.bin EVM bytecode, .dll/.exe managed assemblies): ${target}`);
 }
 
 /** Default search keywords: the feature's words plus any camelCase hints. */
