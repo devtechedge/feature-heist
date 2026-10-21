@@ -122,3 +122,5 @@ export async function heist(o: HeistOptions): Promise<{ manifest: StoredManifest
     return { manifest, slice, dir };
   } finally { rmSync(tmp, { recursive: true, force: true }); }
 }
+
+export { scaffoldRebuild, renderFiles, siteEntry, specNotes, type ScaffoldOptions, type ScaffoldResult } from "./scaffold.js";
